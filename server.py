@@ -1,5 +1,6 @@
 from flask import Flask, request
 from datetime import datetime
+import time
 
 app = Flask(__name__)
 
@@ -24,16 +25,21 @@ def status():
 def send():
     data = request.json
     db.append({
+        'id': len(db),
         'name': data['name'],
         'text': data['text'],
-        'timestamp': datetime.now()
+        'timestamp': time.time()
     })
     return {'ok': True}
 
 
 @app.route("/messages")
 def messages():
-    return {'messages': db}
+    if 'after_id' in request.args:
+        after_id = int(request.args['after_id']) + 1
+    else:
+        after_id = 0
+    return {'messages': db[after_id:]}
 
 
 app.run()
