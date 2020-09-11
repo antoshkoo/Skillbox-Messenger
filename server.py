@@ -43,7 +43,7 @@ def messages():
     return {'messages': db[after_id:]}
 
 
-def passwordq():
+def password():
     pass
 
 app.run()
