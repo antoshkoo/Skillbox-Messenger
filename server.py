@@ -17,7 +17,8 @@ def status():
     return {
         'status': True,
         'name': 'My Messenger',
-        'time': datetime.now().isoformat()
+        'time': datetime.now().isoformat(),
+        'messages': len(db)
     }
 
 
