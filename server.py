@@ -43,4 +43,7 @@ def messages():
     return {'messages': db[after_id:]}
 
 
+def password():
+    pass
+
 app.run()
